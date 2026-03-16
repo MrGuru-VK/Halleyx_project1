@@ -14,7 +14,7 @@ DASHBOARD_TEMPLATE = """
     <header class="topbar">
       <div>
         <p class="eyebrow">Workflow Command Center</p>
-        <h1 class="brand-title">Halleyx Studio</h1>
+        <h1 class="brand-title">Halleyx Project</h1>
       </div>
       <div class="user-bar">
         <div class="user-badge">
