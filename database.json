@@ -102,6 +102,40 @@
       "max_iterations": 5,
       "created_at": "2026-03-16T08:59:59+00:00",
       "updated_at": "2026-03-16T09:05:19+00:00"
+    },
+    {
+      "id": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "workflow_key": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "name": "Shiva",
+      "description": "sample",
+      "version": 1,
+      "is_active": true,
+      "input_schema": {
+        "amount": {
+          "type": "number",
+          "required": true,
+          "allowed_values": []
+        },
+        "country": {
+          "type": "string",
+          "required": true,
+          "allowed_values": []
+        },
+        "department": {
+          "type": "string",
+          "required": true,
+          "allowed_values": []
+        },
+        "priority": {
+          "type": "string",
+          "required": true,
+          "allowed_values": []
+        }
+      },
+      "start_step_id": "f6631f41-fff4-4148-b342-5f2f0b106246",
+      "max_iterations": 4,
+      "created_at": "2026-03-18T16:07:20+00:00",
+      "updated_at": "2026-03-18T16:08:15+00:00"
     }
   ],
   "steps": [
@@ -178,6 +212,36 @@
       },
       "created_at": "2026-03-16T09:00:31+00:00",
       "updated_at": "2026-03-16T09:07:28+00:00"
+    },
+    {
+      "id": "f6631f41-fff4-4148-b342-5f2f0b106246",
+      "workflow_id": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "name": "requester",
+      "step_type": "approval",
+      "order": 1,
+      "metadata": {},
+      "created_at": "2026-03-18T16:08:15+00:00",
+      "updated_at": "2026-03-18T16:08:15+00:00"
+    },
+    {
+      "id": "d1dfad22-a149-4fc7-83b4-a0374bc7c703",
+      "workflow_id": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "name": "manager",
+      "step_type": "approval",
+      "order": 2,
+      "metadata": {},
+      "created_at": "2026-03-18T16:08:28+00:00",
+      "updated_at": "2026-03-18T16:08:28+00:00"
+    },
+    {
+      "id": "54683bce-8441-4d92-aa61-fdd0b4e9114c",
+      "workflow_id": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "name": "ceo",
+      "step_type": "approval",
+      "order": 3,
+      "metadata": {},
+      "created_at": "2026-03-18T16:08:44+00:00",
+      "updated_at": "2026-03-18T16:08:44+00:00"
     }
   ],
   "rules": [
@@ -279,6 +343,33 @@
       "priority": 3,
       "created_at": "2026-03-16T09:07:03+00:00",
       "updated_at": "2026-03-16T09:07:03+00:00"
+    },
+    {
+      "id": "985b8604-6049-41c6-b263-dd7f58f0bad4",
+      "step_id": "f6631f41-fff4-4148-b342-5f2f0b106246",
+      "condition": "amount >100",
+      "next_step_id": "d1dfad22-a149-4fc7-83b4-a0374bc7c703",
+      "priority": 1,
+      "created_at": "2026-03-18T16:09:11+00:00",
+      "updated_at": "2026-03-18T16:09:11+00:00"
+    },
+    {
+      "id": "f662bfb7-8f8d-4d7d-8178-2ae6b6caf64b",
+      "step_id": "d1dfad22-a149-4fc7-83b4-a0374bc7c703",
+      "condition": "amount >200",
+      "next_step_id": "54683bce-8441-4d92-aa61-fdd0b4e9114c",
+      "priority": 1,
+      "created_at": "2026-03-18T16:09:41+00:00",
+      "updated_at": "2026-03-18T16:09:41+00:00"
+    },
+    {
+      "id": "d661a9c5-6832-4cd8-baa4-f78c3010f180",
+      "step_id": "54683bce-8441-4d92-aa61-fdd0b4e9114c",
+      "condition": "amount<100",
+      "next_step_id": null,
+      "priority": 1,
+      "created_at": "2026-03-18T16:10:00+00:00",
+      "updated_at": "2026-03-18T16:10:00+00:00"
     }
   ],
   "executions": [
@@ -481,7 +572,7 @@
       "workflow_id": "8b1e2b4e-180a-47fe-82c7-3bc14a954d17",
       "workflow_name": "Expense Approval",
       "workflow_version": 1,
-      "status": "in_progress",
+      "status": "completed",
       "data": {
         "amount": 250,
         "country": "US",
@@ -546,22 +637,30 @@
           "metadata": {
             "assignee_email": "ceo@example.com"
           },
-          "evaluated_rules": [],
+          "evaluated_rules": [
+            {
+              "rule": "DEFAULT",
+              "result": true,
+              "error": null,
+              "priority": 1
+            }
+          ],
           "selected_next_step": null,
           "selected_next_step_name": null,
-          "status": "pending_approval",
-          "approver_id": null,
+          "status": "completed",
+          "approver_id": "095185c6-9b98-4229-acb1-aef6a3331e83",
           "assigned_to": "ceo@example.com",
           "error_message": null,
           "started_at": "2026-03-16T06:43:05+00:00",
-          "ended_at": null
+          "ended_at": "2026-03-18T16:11:46+00:00",
+          "approved_by_name": "Cora Chief Executive"
         }
       ],
-      "current_step_id": "731e150b-db54-473e-88b5-448dfd39c928",
+      "current_step_id": null,
       "retries": 0,
       "triggered_by": "requester",
       "started_at": "2026-03-16T06:43:04+00:00",
-      "ended_at": null
+      "ended_at": "2026-03-18T16:11:46+00:00"
     },
     {
       "id": "07389b0d-b8f5-453f-9a47-491edf2ba33b",
@@ -601,6 +700,41 @@
       "retries": 0,
       "triggered_by": "requester",
       "started_at": "2026-03-16T09:01:12+00:00",
+      "ended_at": null
+    },
+    {
+      "id": "2967b5be-7359-4880-94f4-e68e7e0095b7",
+      "workflow_id": "c5fd1139-76b3-44a1-af70-ae00559c6b3f",
+      "workflow_name": "Shiva",
+      "workflow_version": 1,
+      "status": "in_progress",
+      "data": {
+        "amount": 65000,
+        "country": "India",
+        "department": "Artificial intelligence and data science ",
+        "priority": "High"
+      },
+      "logs": [
+        {
+          "step_id": "f6631f41-fff4-4148-b342-5f2f0b106246",
+          "step_name": "requester",
+          "step_type": "approval",
+          "metadata": {},
+          "evaluated_rules": [],
+          "selected_next_step": null,
+          "selected_next_step_name": null,
+          "status": "pending_approval",
+          "approver_id": null,
+          "assigned_to": null,
+          "error_message": null,
+          "started_at": "2026-03-18T16:10:26+00:00",
+          "ended_at": null
+        }
+      ],
+      "current_step_id": "f6631f41-fff4-4148-b342-5f2f0b106246",
+      "retries": 0,
+      "triggered_by": "requester",
+      "started_at": "2026-03-18T16:10:26+00:00",
       "ended_at": null
     }
   ],
